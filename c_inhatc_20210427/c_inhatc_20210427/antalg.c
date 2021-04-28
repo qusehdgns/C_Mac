@@ -1,5 +1,5 @@
 /*
- *  Ant Algorithm ½Ç½ÀÇÁ·Î±×·¥
+ *  Ant Algorithm ì‹¤ìŠµí”„ë¡œê·¸ë¨
  */
 
 
@@ -26,7 +26,7 @@ int     bestIndex;
 
 /*
  *  init()
- *  µµ½Ã,µµ½Ã°£ °Å¸®, °³¹Ì ¸ğÁı´ÜÀ» ÃÊ±âÈ­½ÃÅ°´Â ÇÔ¼ö
+ *  ë„ì‹œ,ë„ì‹œê°„ ê±°ë¦¬, ê°œë¯¸ ëª¨ì§‘ë‹¨ì„ ì´ˆê¸°í™”ì‹œí‚¤ëŠ” í•¨ìˆ˜
  */
 
 void init( void )
@@ -34,10 +34,10 @@ void init( void )
   int from, to, ant;
 
 
-    /* ±×¸®µå¿¡ µµ½Ã »ı¼º °úÁ¤ */
-	for (from = 0 ; from < MAX_CITIES ; from++) {
+    /* ê·¸ë¦¬ë“œì— ë„ì‹œ ìƒì„± ê³¼ì • */
+    for (from = 0 ; from < MAX_CITIES ; from++) {
 
-  //  /*  ÀÓÀÇ ÁÂÇ¥ ºÎ¿©ÇÏ¿© ±×¸®µå¿¡ µµ½Ã »ı¼º */
+  //  /*  ì„ì˜ ì¢Œí‘œ ë¶€ì—¬í•˜ì—¬ ê·¸ë¦¬ë“œì— ë„ì‹œ ìƒì„± */
     cities[from].x = getRand( MAX_DISTANCE );
     cities[from].y = getRand( MAX_DISTANCE );
  
@@ -49,7 +49,7 @@ void init( void )
 
   }
 
-  /* °¢ µµ½Ã°£ÀÇ °Å¸®¸¦ °è»ê  */
+  /* ê° ë„ì‹œê°„ì˜ ê±°ë¦¬ë¥¼ ê³„ì‚°  */
   for ( from = 0 ; from < MAX_CITIES ; from++) {
 
     for ( to = 0 ; to < MAX_CITIES ; to++) {
@@ -64,12 +64,12 @@ void init( void )
     }
   }
 
-    /* °³¹Ì ÃÊ±âÈ­ */
+    /* ê°œë¯¸ ì´ˆê¸°í™” */
   //to = 0;
   to = getRand(20);
   for ( ant = 0 ; ant < MAX_ANTS ; ant++ ) {
 
-    /* °³¹ÌµéÀ» ±×¸®µå »óÀÇ µµ½Ã¿¡ ¹èÄ¡ */
+    /* ê°œë¯¸ë“¤ì„ ê·¸ë¦¬ë“œ ìƒì˜ ë„ì‹œì— ë°°ì¹˜ */
     if (to == MAX_CITIES) to = 0;
     ants[ant].curCity = to++;
 
@@ -83,7 +83,7 @@ void init( void )
     ants[ant].nextCity = -1;
     ants[ant].tourLength = 0.0;
 
-    /* °³¹Ì°¡ ÀÖ´Â µµ½ÃµéÀ» Å¸ºÎ ¸®½ºÆ®¿¡ ÀûÀç */
+    /* ê°œë¯¸ê°€ ìˆëŠ” ë„ì‹œë“¤ì„ íƒ€ë¶€ ë¦¬ìŠ¤íŠ¸ì— ì ì¬ */
     ants[ant].tabu[ants[ant].curCity] = 1;
 
   }
@@ -93,8 +93,8 @@ void init( void )
 /*
  *  restartAnts()
  *
- *  ÀçÂ÷ ÀÓ¹«¼öÇà(¿©Çà)À» ÇÏµµ·Ï °³¹Ì ¸ğÁı´ÜÀ» ´Ù½Ã ÃÊ±âÈ­ ½ÃÅ´
- *  
+ *  ì¬ì°¨ ì„ë¬´ìˆ˜í–‰(ì—¬í–‰)ì„ í•˜ë„ë¡ ê°œë¯¸ ëª¨ì§‘ë‹¨ì„ ë‹¤ì‹œ ì´ˆê¸°í™” ì‹œí‚´
+ *
  */
 
 void restartAnts( void )
@@ -131,7 +131,7 @@ void restartAnts( void )
 
 /*
  *  antProduct()
- *  °æ·Î ¹ß°ß ¼ö½Ä¿¡ »ç¿ëµÉ ºĞ¸ğ°ª °è»ê 
+ *  ê²½ë¡œ ë°œê²¬ ìˆ˜ì‹ì— ì‚¬ìš©ë  ë¶„ëª¨ê°’ ê³„ì‚°
  */
 
 double antProduct( int from, int to )
@@ -143,27 +143,27 @@ double antProduct( int from, int to )
 
 /*
  *  selectNextCity()
- *  °æ·Î ¼±ÅÃ ¾Ë°í¸®Áò°ú ÇöÀçÀÇ Æä¸£¸ó ¾çÀ¸·Î  °³¹Ì°¡ ¹æ¹®ÇÒ ´ÙÀ½ µµ½Ã¸¦ ¼±ÅÃ
+ *  ê²½ë¡œ ì„ íƒ ì•Œê³ ë¦¬ì¦˜ê³¼ í˜„ì¬ì˜ í˜ë¥´ëª¬ ì–‘ìœ¼ë¡œ  ê°œë¯¸ê°€ ë°©ë¬¸í•  ë‹¤ìŒ ë„ì‹œë¥¼ ì„ íƒ
  */
 int selectNextCity( int ant )
 {
   int from, to;
   double denom=0.0;
 
-  /* ¹æ¹®ÇÒ ´ÙÀ½ µµ½Ã  */
+  /* ë°©ë¬¸í•  ë‹¤ìŒ ë„ì‹œ  */
   from = ants[ant].curCity;
 
-  /* °æ·Î ¹ß°ß¿ë È®·ü½Ä¿¡ »ç¿ëµÉ ºĞ¸ğ°ª °è»ê*/
+  /* ê²½ë¡œ ë°œê²¬ìš© í™•ë¥ ì‹ì— ì‚¬ìš©ë  ë¶„ëª¨ê°’ ê³„ì‚°*/
   for (to = 0 ; to < MAX_CITIES ; to++) {
-	  if (ants[ant].tabu[to] == 0) {  // ¹æ¹®ÇÑ µµ½Ã°¡ ¾Æ´Ô...
+      if (ants[ant].tabu[to] == 0) {  // ë°©ë¬¸í•œ ë„ì‹œê°€ ì•„ë‹˜...
       denom += antProduct( from, to );
     }
   }
 
-  if(denom == 0) 
+  if(denom == 0)
   {
-	  printf("0-divied occur!!");
-	  exit(1);
+      printf("0-divied occur!!");
+      exit(1);
   }
   //assert(denom != 0.0);
 
@@ -171,14 +171,14 @@ int selectNextCity( int ant )
 
     double p;
 
-    to++;   // to ÀÌÈÄ µµ½Ã Á¶»çÇÏ´Ù ¸¶Áö¸· µµ½Ã ¸¸³ª¸é 0¹ø µµ½ÃºÎÅÍ Á¶»ç...
+    to++;   // to ì´í›„ ë„ì‹œ ì¡°ì‚¬í•˜ë‹¤ ë§ˆì§€ë§‰ ë„ì‹œ ë§Œë‚˜ë©´ 0ë²ˆ ë„ì‹œë¶€í„° ì¡°ì‚¬...
     if (to >= MAX_CITIES) to = 0;
 
     if ( ants[ant].tabu[to] == 0 ) {
 
-      p = antProduct(from, to)/denom;   // ¼ö½Ä 7.1 È®·ü °è»ê 
+      p = antProduct(from, to)/denom;   // ìˆ˜ì‹ 7.1 í™•ë¥  ê³„ì‚°
 
-      if (getSRand() < p ) break;  // È®·ü º¸´Ù Å©¸é ´ÙÀ½ ¹æ¹®µµ½Ã·Î ¼±Á¤ 
+      if (getSRand() < p ) break;  // í™•ë¥  ë³´ë‹¤ í¬ë©´ ë‹¤ìŒ ë°©ë¬¸ë„ì‹œë¡œ ì„ ì •
 
     }
 
@@ -190,21 +190,21 @@ int selectNextCity( int ant )
 
 /*
  *  simulateAnts()
- *  ¸ğÁı´ÜÀÇ °¢°¢ÀÇ °³¹Ì°¡ ÀÏ´Ü ÇÑ¹ø¾¿ ¸ğµÎ ¿©ÇàÀ» ¸¶Ä¡°Ô ÇÏ¸ç
- *  ÀÏ´Ü ÇÑ¹ø ¸ğµÎ ¸¶Ä¡¸é ÃÊ±âÈ­µÇ¾î ´Ù½Ã ¿©ÇàÅä·Ï ÇÏ´Â ÇÔ¼ö
+ *  ëª¨ì§‘ë‹¨ì˜ ê°ê°ì˜ ê°œë¯¸ê°€ ì¼ë‹¨ í•œë²ˆì”© ëª¨ë‘ ì—¬í–‰ì„ ë§ˆì¹˜ê²Œ í•˜ë©°
+ *  ì¼ë‹¨ í•œë²ˆ ëª¨ë‘ ë§ˆì¹˜ë©´ ì´ˆê¸°í™”ë˜ì–´ ë‹¤ì‹œ ì—¬í–‰í† ë¡ í•˜ëŠ” í•¨ìˆ˜
  */
 
-// k°³ÀÇ ¿¡ÀÌÀüÆ®°¡ °¢°¢ µµ½Ã Å½¹æ , ¸¶Áö¸· µµ½Ã °¥¶§±îÁö.. È£ÃâµÊ
-// pathIndex °¡ MAX_CITIESº¸´Ù Å©¸é moving°ªÀº 0·Î ¸®ÅÏµÊ 
+// kê°œì˜ ì—ì´ì „íŠ¸ê°€ ê°ê° ë„ì‹œ íƒë°© , ë§ˆì§€ë§‰ ë„ì‹œ ê°ˆë•Œê¹Œì§€.. í˜¸ì¶œë¨
+// pathIndex ê°€ MAX_CITIESë³´ë‹¤ í¬ë©´ movingê°’ì€ 0ë¡œ ë¦¬í„´ë¨
 
-int simulateAnts( void )   
+int simulateAnts( void )
 {
   int k;
   int moving = 0;
 
   for (k = 0 ; k < MAX_ANTS ; k++) {
 
-    /* °³¹Ì°¡ ¾ÆÁ÷ ¹æ¹®ÇÒ µµ½Ã°¡ ÀÖ´ÂÁö... */
+    /* ê°œë¯¸ê°€ ì•„ì§ ë°©ë¬¸í•  ë„ì‹œê°€ ìˆëŠ”ì§€... */
     if (ants[k].pathIndex < MAX_CITIES) {
 
       ants[k].nextCity = selectNextCity( k );
@@ -215,9 +215,9 @@ int simulateAnts( void )
 
       ants[k].tourLength += distance[ants[k].curCity][ants[k].nextCity];
 
-      /* ¸¶Áö¸· µµ½Ã Ã³¸® (¸¶Áö¸· µµ½Ã¿¡¼­ to Ãâ¹ß µµ½Ã·Î) */
+      /* ë§ˆì§€ë§‰ ë„ì‹œ ì²˜ë¦¬ (ë§ˆì§€ë§‰ ë„ì‹œì—ì„œ to ì¶œë°œ ë„ì‹œë¡œ) */
       if (ants[k].pathIndex == MAX_CITIES) {
-        ants[k].tourLength += 
+        ants[k].tourLength +=
           distance[ants[k].path[MAX_CITIES-1]][ants[k].path[0]];
       }
 
@@ -235,14 +235,14 @@ int simulateAnts( void )
 
 /*
  *  updateTrails()
- *  °³¹Ì°¡ ´Ù³æ´ø °æ·ÎÀÇ ¸ğµç Æä¸£¸ó ¾çÀ» ¾÷µ¥ÀÌÆ®(Áõ¹ß Æ÷ÇÔ) ½ÃÅ°´Â ÇÔ¼ö
+ *  ê°œë¯¸ê°€ ë‹¤ë…”ë˜ ê²½ë¡œì˜ ëª¨ë“  í˜ë¥´ëª¬ ì–‘ì„ ì—…ë°ì´íŠ¸(ì¦ë°œ í¬í•¨) ì‹œí‚¤ëŠ” í•¨ìˆ˜
  */
 
 void updateTrails( void )
 {
   int from, to, i, ant;
 
-  /* ÆäÇÁ¸ó Áõ¹ß Ã³¸® */
+  /* í˜í”„ëª¬ ì¦ë°œ ì²˜ë¦¬ */
   for (from = 0 ; from < MAX_CITIES ; from++) {
 
     for (to = 0 ; to < MAX_CITIES ; to++) {
@@ -259,8 +259,8 @@ void updateTrails( void )
 
   }
 
-  /* ÀÚÁÖ ´Ù´Ï´Â °æ·Î¿¡ ´ëÇØ Æä¸£¸ó ´©Àû Ã³¸®*/
-  /* °¢ °³¹ÌÀÇ ¿©Çà °æ·Î¿¡ ´ëÇÏ¿©... */
+  /* ìì£¼ ë‹¤ë‹ˆëŠ” ê²½ë¡œì— ëŒ€í•´ í˜ë¥´ëª¬ ëˆ„ì  ì²˜ë¦¬*/
+  /* ê° ê°œë¯¸ì˜ ì—¬í–‰ ê²½ë¡œì— ëŒ€í•˜ì—¬... */
   for (ant = 0 ; ant < MAX_ANTS ; ant++) {
 
     /* Update each leg of the tour given the tour length */
@@ -286,7 +286,7 @@ void updateTrails( void )
 
 /*
  *  emitDataFile()
- *  °¡Àå ÁÁÀº ¼Ö·ù¼ÇÀ» °¡Áø °æ·Î Ãâ·Â,  *
+ *  ê°€ì¥ ì¢‹ì€ ì†”ë¥˜ì…˜ì„ ê°€ì§„ ê²½ë¡œ ì¶œë ¥,  *
  */
 
 void emitDataFile( int ant )
@@ -302,13 +302,13 @@ void emitDataFile( int ant )
 
   fp = fopen("solution.dat", "w");
   for (city = 0 ; city < MAX_CITIES ; city++) {
-    fprintf(fp, "%02d %d\n",  
-		cities[ ants[ant].path[city] ].x, 
-		cities[ ants[ant].path[city] ].y );
-  }  
-  fprintf(fp, "%02d %d\n",  
-	   cities[ ants[ant].path[0] ].x, 
-	   cities[ ants[ant].path[0] ].y );
+    fprintf(fp, "%02d %d\n",
+        cities[ ants[ant].path[city] ].x,
+        cities[ ants[ant].path[city] ].y );
+  }
+  fprintf(fp, "%02d %d\n",
+       cities[ ants[ant].path[0] ].x,
+       cities[ ants[ant].path[0] ].y );
 
   fclose(fp);
 }
@@ -317,7 +317,7 @@ void emitDataFile( int ant )
 
 /*
  *  main()
- *  ¸ŞÀÎ ÇÔ¼ö
+ *  ë©”ì¸ í•¨ìˆ˜
  */
 
 int main()
@@ -333,11 +333,11 @@ int main()
 
   while (curTime++ < MAX_TIME) {
 
-    if ( simulateAnts() == 0 ) {  // ¸ğµç ¿¡ÀÌÀüÆ®°¡ µµ½Ã Å½¹æÀ» ¸¶Ä¡°í µ¹¾Æ¿È 
+    if ( simulateAnts() == 0 ) {  // ëª¨ë“  ì—ì´ì „íŠ¸ê°€ ë„ì‹œ íƒë°©ì„ ë§ˆì¹˜ê³  ëŒì•„ì˜´
       updateTrails();
       if (curTime != MAX_TIME)  restartAnts();
       printf("Time is %d (%g)\n", curTime, best);
-	  fprintf(fp1,"Time is %d (%g)\n", curTime, best);
+      fprintf(fp1,"Time is %d (%g)\n", curTime, best);
     }
  
   }
