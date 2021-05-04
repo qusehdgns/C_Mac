@@ -162,7 +162,8 @@ int selectNextCity( int ant )
 
   if(denom == 0)
   {
-      printf("0-divied occur!!");
+      printf("0-divied occur!!\n");
+      printf("\n\n");
       exit(1);
   }
   //assert(denom != 0.0);
@@ -294,13 +295,13 @@ void emitDataFile( int ant )
   int city;
   FILE *fp;
 
-  fp = fopen("cities.dat", "w");
+  fp = fopen("/Users/donghunbyun/Desktop/workspace/C/c_inhatc_20210427/c_inhatc_20210427/cities.dat", "w");
   for (city = 0 ; city < MAX_CITIES ; city++) {
     fprintf(fp, "%02d %02d\n", cities[city].x, cities[city].y);
   }
   fclose(fp);
 
-  fp = fopen("solution.dat", "w");
+  fp = fopen("/Users/donghunbyun/Desktop/workspace/C/c_inhatc_20210427/c_inhatc_20210427/solution.dat", "w");
   for (city = 0 ; city < MAX_CITIES ; city++) {
     fprintf(fp, "%02d %d\n",
         cities[ ants[ant].path[city] ].x,
@@ -325,7 +326,7 @@ int main()
   FILE *fp1;
   int curTime = 0;
 
-  fp1=fopen("trace_best.dat","w");
+  fp1=fopen("/Users/donghunbyun/Desktop/workspace/C/c_inhatc_20210427/c_inhatc_20210427/trace_best.dat","w");
 
   srand( (unsigned int) time(NULL) );
 
